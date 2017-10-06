@@ -1,0 +1,29 @@
+{
+  "name": "svift-vis-mosaic",
+  "version": "1.0.0",
+  "definition": {
+    "name": "mosaic",
+    "description": "mosaic module",
+    "title": "Mosaic",
+    "input": "number"
+  },
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "jshint index.js",
+    "build": "node build.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@hhack@bitbucket.org:svift/vis-mosaic-module.git"
+  },
+  "author": "Hans",
+  "license": "MIT",
+  "devDependencies": {
+    "fs": "0.0.1-security",
+    "jshint": "^2.9.5",
+    "node-sass": "^4.5.3",
+    "svift-helper": "git+ssh://git@bitbucket.org:svift/helper-module.git",
+    "svift-vis": "git+ssh://git@bitbucket.org:svift/vis-module.git"
+  }
+}
