@@ -121,6 +121,7 @@ SVIFT.vis.mosaic = (function (data, container) {
 
     var windowWidth = module.container.node().offsetWidth - module.config.margin.left - module.config.margin.right;
     var windowHeight = module.container.node().offsetHeight - module.config.margin.top - module.config.margin.bottom;
+    var paddingText= 10;
 
     //Set up all the text sizes
     module.d3config.titleMain
@@ -130,7 +131,7 @@ SVIFT.vis.mosaic = (function (data, container) {
     module.d3config.titleSub
       .attr("x", windowWidth / 2)
       .attr("y", module.d3config.titleMain.node().getBBox().height)
-      .attr("font-size", "1em");
+      .attr("font-size", "2em");
 
     module.d3config.valueTextBottom
       .attr("x", windowWidth / 2)
@@ -138,8 +139,8 @@ SVIFT.vis.mosaic = (function (data, container) {
 
 
     //set up  grid
-    var titleWrapperHeight = module.d3config.titleWrapper.node().getBBox().height + module.d3config.valueTextBottom.node().getBBox().height;
-    var maxSize = Math.min(windowWidth,(windowHeight-titleWrapperHeight));
+    var allTextHeights = (module.d3config.titleWrapper.node().getBBox().height + paddingText) + (module.d3config.valueTextBottom.node().getBBox().height + paddingText);
+    var maxSize = Math.min(windowWidth,(windowHeight-allTextHeights));
     var cellSize = maxSize / 10;
     var cellData = module.gridSetupData(cellSize);
 
@@ -158,12 +159,12 @@ SVIFT.vis.mosaic = (function (data, container) {
       .attr("height", function(d) { return d.height; })
 
     module.d3config.rowContainer
-      .attr("transform","translate(" +((windowWidth - maxSize)/2)+ ","+module.d3config.titleWrapper.node().getBBox().height+")")
+      .attr("transform","translate(" +((windowWidth - maxSize)/2)+ ","+(module.d3config.titleWrapper.node().getBBox().height + paddingText) +")")
 
     // y Position for "value text" at the end 
     var gridSize = module.d3config.rowContainer.node().getBBox().height;
     module.d3config.valueTextBottom
-      .attr("y", (titleWrapperHeight + gridSize));
+      .attr("y", (allTextHeights + gridSize));
 
   };
 

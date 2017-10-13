@@ -23,7 +23,7 @@
     "fs": "0.0.1-security",
     "jshint": "^2.9.5",
     "node-sass": "^4.5.3",
-    "svift-helper": "git+ssh://git@bitbucket.org:svift/helper-module.git",
-    "svift-vis": "git+ssh://git@bitbucket.org:svift/vis-module.git"
+    "svift-helper": "git+ssh://git@bitbucket.org/svift/helper-module.git",
+    "svift-vis": "git+ssh://git@bitbucket.org/svift/vis-module.git"
   }
 }
