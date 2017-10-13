@@ -126,16 +126,16 @@ SVIFT.vis.mosaic = (function (data, container) {
     //Set up all the text sizes
     module.d3config.titleMain
       .attr("x", windowWidth / 2)
-      .attr("font-size", "2em")
+      .attr("font-size", "1.7em")
 
     module.d3config.titleSub
       .attr("x", windowWidth / 2)
       .attr("y", module.d3config.titleMain.node().getBBox().height)
-      .attr("font-size", "2em");
+      .attr("font-size", "1em");
 
     module.d3config.valueTextBottom
       .attr("x", windowWidth / 2)
-      .attr("font-size", "2em")
+      .attr("font-size", "3em")
 
 
     //set up  grid
