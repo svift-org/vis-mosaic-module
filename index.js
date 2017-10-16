@@ -173,7 +173,7 @@ SVIFT.vis.mosaic = (function (data, container) {
     var interpolation = Math.round(module.d3config.interpolate(module.d3config.ease(t)));
 
     var rects = d3.selectAll("rect")
-        .filter(function(d, i) { return i == (interpolation - 1); })
+        .filter(function(d, i) { return i <= (interpolation - 1); })
         .style("fill", "#71609B")
 
     module.d3config.valueTextBottom
