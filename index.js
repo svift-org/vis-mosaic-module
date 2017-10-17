@@ -47,7 +47,7 @@ SVIFT.vis.mosaic = (function (data, container) {
     //   return function(t) { 
     //     var rects = d3.selectAll("rect")
     //         .filter(function(d, i) { return i <= (index); })
-    //         .style("fill", "#71609B")
+    //         .style("fill", data.style.color.main)
     //         // .style("fill", module.d3config.colorscale(t).hex())
     //         // .attr("opacity",opacityInterpolation)
 
@@ -69,22 +69,24 @@ SVIFT.vis.mosaic = (function (data, container) {
     // }
 
 
+    // module.g.node().parentNode.append("rect")
+
     module.g
-      .attr("font-family", "DecimaMonoProBold")
+      .attr("font-family", data.style.font)
 
     //Tile(s)
     module.d3config.titleWrapper = module.g.append("g")
       .attr("text-anchor", "middle")
-      .attr("font-family", "DecimaMonoProBold")
+      .attr("font-family", data.style.font)
 
     module.d3config.titleMain = module.d3config.titleWrapper.append("text")
       .text(data.data.title)
-      .attr("fill", "#71609B")
+      .attr("fill", data.style.color.main)
       .attr("dominant-baseline","hanging")
 
     module.d3config.titleSub = module.d3config.titleWrapper.append("text")
       .text(data.data.subTitle)
-      .attr("fill", "#D8D8D8")
+      .attr("fill", data.style.color.second)
       .attr("dominant-baseline","hanging")
 
 
@@ -103,15 +105,15 @@ SVIFT.vis.mosaic = (function (data, container) {
       .data(function(d) { return d; })
       .enter().append("rect")
       .attr("class","square")
-      .style("fill", "#D8D8D8")
+      .style("fill", data.style.color.second)
       .style("stroke", "#fff")
 
 
     //Number Text
     module.d3config.valueTextBottom = module.g.append("text")
       .text(data.data.data[0] + "%")
-      .attr("font-family", "DecimaMonoProBold")
-      .attr("fill", "#71609B")
+      .attr("font-family", data.style.font)
+      .attr("fill", data.style.color.main)
       .attr("text-anchor", "middle")
 
   };
@@ -174,7 +176,7 @@ SVIFT.vis.mosaic = (function (data, container) {
 
     var rects = d3.selectAll("rect")
         .filter(function(d, i) { return i <= (interpolation - 1); })
-        .style("fill", "#71609B")
+        .style("fill", data.style.color.main)
 
     module.d3config.valueTextBottom
       .text(interpolation + "%")
