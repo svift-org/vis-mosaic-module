@@ -15,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@hhack@bitbucket.org:svift/vis-mosaic-module.git"
+    "url": "git+https://git@github.com/svift-org/vis-mosaic-module.git"
   },
   "author": "Hans",
   "license": "MIT",
@@ -23,7 +23,7 @@
     "fs": "0.0.1-security",
     "jshint": "^2.9.5",
     "node-sass": "^4.5.3",
-    "svift-helper": "git+ssh://git@bitbucket.org/svift/helper-module.git",
-    "svift-vis": "git+ssh://git@bitbucket.org/svift/vis-module.git"
+    "svift-helper": "git+https://git@github.com/svift-org/helper-module.git",
+    "svift-vis": "git+https://git@github.com/svift-org/vis-module.git"
   }
 }
