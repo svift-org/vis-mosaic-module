@@ -42,54 +42,6 @@ SVIFT.vis.mosaic = (function (data, container) {
 
   module.setup = function () {
 
-  	//CODE FOR MULTI ANIMATIONS
-    // var returnAnimation = function(index){  
-    //   return function(t) { 
-    //     var rects = d3.selectAll("rect")
-    //         .filter(function(d, i) { return i <= (index); })
-    //         .style("fill", data.style.color.main)
-    //         // .style("fill", module.d3config.colorscale(t).hex())
-    //         // .attr("opacity",opacityInterpolation)
-
-    //     module.d3config.valueTextBottom
-    //       .text(index + "%")
-    //   };
-    // };
-
-    // for (var i = 0; i < data.data.data[0]; i++) {
-    //   module["animate"+i] = returnAnimation(i)
-    // }
-
-    // //Add animations
-    // var timeSteps = 3000/data.data.data[0];
-    // var time = 0;
-    // for (var i = 0; i < data.data.data[0]; i++) {
-    //   module.timeline['animation'+i] = {start:time, end:(time+timeSteps), func:module["animate"+i]};
-    //   time = time+timeSteps;
-    // }
-
-
-    // module.g.node().parentNode.append("rect")
-
-    module.g
-      .attr("font-family", data.style.font)
-
-    //Tile(s)
-    module.d3config.titleWrapper = module.g.append("g")
-      .attr("text-anchor", "middle")
-      .attr("font-family", data.style.font)
-
-    module.d3config.titleMain = module.d3config.titleWrapper.append("text")
-      .text(data.data.title)
-      .attr("fill", data.style.color.main)
-      .attr("dominant-baseline","hanging")
-
-    module.d3config.titleSub = module.d3config.titleWrapper.append("text")
-      .text(data.data.subTitle)
-      .attr("fill", data.style.color.second)
-      .attr("dominant-baseline","hanging")
-
-
     //Grid
     var dummyData = module.gridSetupData(10);
 
@@ -108,9 +60,8 @@ SVIFT.vis.mosaic = (function (data, container) {
       .style("fill", data.style.color.second)
       .style("stroke", "#fff")
 
-
-    //Number Text
-    module.d3config.valueTextBottom = module.g.append("text")
+    //Mosaic Value Text
+    module.d3config.mosaicValueText = module.g.append("text")
       .text(data.data.data[0] + "%")
       .attr("font-family", data.style.font)
       .attr("fill", data.style.color.main)
@@ -123,25 +74,14 @@ SVIFT.vis.mosaic = (function (data, container) {
 
     var windowWidth = module.container.node().offsetWidth - module.config.margin.left - module.config.margin.right;
     var windowHeight = module.container.node().offsetHeight - module.config.margin.top - module.config.margin.bottom;
-    var paddingText= 10;
 
-    //Set up all the text sizes
-    module.d3config.titleMain
+    //Set up the text sizes
+    module.d3config.mosaicValueText
       .attr("x", windowWidth / 2)
-      .attr("font-size", "1.7em")
+      .attr("font-size", "2.5em")
 
-    module.d3config.titleSub
-      .attr("x", windowWidth / 2)
-      .attr("y", module.d3config.titleMain.node().getBBox().height)
-      .attr("font-size", "1em");
-
-    module.d3config.valueTextBottom
-      .attr("x", windowWidth / 2)
-      .attr("font-size", "3em")
-
-
-    //set up  grid
-    var allTextHeights = (module.d3config.titleWrapper.node().getBBox().height + paddingText) + (module.d3config.valueTextBottom.node().getBBox().height + paddingText);
+    //set up grid
+    var allTextHeights = module.config.bottomTextHeight + module.config.topTextHeight + module.d3config.mosaicValueText.node().getBBox().height + 20;
     var maxSize = Math.min(windowWidth,(windowHeight-allTextHeights));
     var cellSize = maxSize / 10;
     var cellData = module.gridSetupData(cellSize);
@@ -161,12 +101,13 @@ SVIFT.vis.mosaic = (function (data, container) {
       .attr("height", function(d) { return d.height; })
 
     module.d3config.rowContainer
-      .attr("transform","translate(" +((windowWidth - maxSize)/2)+ ","+(module.d3config.titleWrapper.node().getBBox().height + paddingText) +")")
+      .attr("transform","translate(" +((windowWidth - maxSize)/2)+ ","+(module.config.topTextHeight) +")")
 
-    // y Position for "value text" at the end 
+
+    // y Position of "value text" at the end 
     var gridSize = module.d3config.rowContainer.node().getBBox().height;
-    module.d3config.valueTextBottom
-      .attr("y", (allTextHeights + gridSize));
+    module.d3config.mosaicValueText
+      .attr("y", (gridSize + module.config.topTextHeight+ module.config.margin.left + module.config.margin.right + 20));
 
   };
 
@@ -178,7 +119,7 @@ SVIFT.vis.mosaic = (function (data, container) {
         .filter(function(d, i) { return i <= (interpolation - 1); })
         .style("fill", data.style.color.main)
 
-    module.d3config.valueTextBottom
+    module.d3config.mosaicValueText
       .text(interpolation + "%")
 
   };
