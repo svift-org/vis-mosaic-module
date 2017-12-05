@@ -21,6 +21,7 @@
     "title": "SVIFT Entwicklungsstand",
     "subTitle": "am 29.09.2017",
     "attribution": "Some attribution here",
-    "source": "source: some source"
+    "source": "source: some source",
+    "format":"one-val"
   }
 }
