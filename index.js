@@ -2,11 +2,10 @@ SVIFT.vis.mosaic = (function (data, container) {
 
   // Module object
   var module = SVIFT.vis.base(data, container);
-  var firstDataKey = Object.keys(data.data.data)[0];
  
   module.d3config = {
     ease:d3.easeCubicInOut, 
-    interpolate: d3.interpolate(0,data.data.data[firstDataKey][0][1]),
+    interpolate: d3.interpolate(0,data.data.data[0].data[0]),
   };
 
   //Grid Function taken from https://bl.ocks.org/cagrimmett/07f8c8daea00946b9e704e3efcbd5739/bd1f4c0c33d8af6f64535b7963b0da2e6499fc31
@@ -64,7 +63,7 @@ SVIFT.vis.mosaic = (function (data, container) {
 
     //Mosaic Value Text
     module.d3config.mosaicValueText = module.g.append("text")
-      .text(data.data.data[firstDataKey][0][1] + "%")
+      .text(data.data.data[0].data[0] + "%")
       .attr("font-family", data.style.font)
       .attr("fill", data.style.color.main)
       .attr("text-anchor", "middle")
