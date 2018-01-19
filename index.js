@@ -58,7 +58,7 @@ SVIFT.vis.mosaic = (function (data, container) {
       .data(function(d) { return d; })
       .enter().append("rect")
       .attr("class","square")
-      .style("fill", data.style.color.second)
+      .style("fill", data.data.colors[0])
       .style("stroke", "#fff")
 
     //Mosaic Value Text
