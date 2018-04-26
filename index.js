@@ -65,7 +65,7 @@ SVIFT.vis.mosaic = (function (data, container) {
     module.d3config.mosaicValueText = module.d3config.row.append("text")
       .text(data.data.data[0].data[0] + "%")
       .attr("font-family", data.style.font)
-      .attr('class', 'visFill labelText')
+      .attr('class', 'visFill labelText big')
       .attr("text-anchor", "middle")
 
   };
