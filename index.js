@@ -65,7 +65,7 @@ SVIFT.vis.mosaic = (function (data, container) {
     module.d3config.mosaicValueText = module.d3config.row.append("text")
       .text(data.data.data[0].data[0] + "%")
       .attr("font-family", data.style.font)
-      .attr("fill", data.style.color.main)
+      .attr('class', 'visFill labelText')
       .attr("text-anchor", "middle")
 
   };
@@ -122,7 +122,7 @@ SVIFT.vis.mosaic = (function (data, container) {
 
     var rects = d3.selectAll("rect")
         .filter(function(d, i) { return i <= (interpolation - 1); })
-        .style("fill", data.style.color.main)
+        .attr('class', 'visFill');
 
     module.d3config.mosaicValueText
       .text(interpolation + "%")
