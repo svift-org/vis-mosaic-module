@@ -62,7 +62,7 @@ SVIFT.vis.mosaic = (function (data, container) {
       .style("stroke", "#fff")
 
     //Mosaic Value Text
-    module.d3config.mosaicValueText = module.d3config.row.append("text")
+    module.d3config.mosaicValueText = module.vizContainer.append("text")
       .text(data.data.data[0].data[0] + "%")
       .attr("font-family", data.style.font)
       .attr('class', 'visFill labelText big')
@@ -73,7 +73,7 @@ SVIFT.vis.mosaic = (function (data, container) {
 
   module.resize = function () {
 
-    var padding = 10;
+    var padding = 12;
     var windowWidth = module.vizSize.width -padding;
     var windowHeight = module.vizSize.height -padding;
     var maxSize = Math.min(windowWidth,windowHeight);
@@ -87,7 +87,7 @@ SVIFT.vis.mosaic = (function (data, container) {
     var maxSizeCells = maxSize - textHeight;
 
     module.d3config.mosaicValueText
-      .attr("x", maxSizeCells/2)
+      .attr("x", windowWidth/2)
 
     var cellSize = maxSizeCells / 10;
     var cellData = module.gridSetupData(cellSize);
@@ -113,6 +113,8 @@ SVIFT.vis.mosaic = (function (data, container) {
     var gridSize = module.d3config.rowContainer.node().getBBox().height;
     module.d3config.mosaicValueText
       .attr("y", (gridSize  + (textHeight / 2)));
+
+      console.log(gridSize)
 
   };
 
