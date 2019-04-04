@@ -114,7 +114,7 @@ SVIFT.vis.mosaic = (function (data, container) {
     module.d3config.mosaicValueText
       .attr("y", (gridSize  + (textHeight / 2)));
 
-      console.log(gridSize)
+      console.log(module.d3config.column.selectAll('rect')._parents)
 
   };
 
@@ -122,9 +122,17 @@ SVIFT.vis.mosaic = (function (data, container) {
 
     var interpolation = Math.round(module.d3config.interpolate(module.d3config.ease(t)));
 
-    var rects = d3.selectAll("rect")
-        .filter(function(d, i) { return i <= (interpolation - 1); })
-        .attr('class', 'visFill');
+    module.d3config.column.selectAll('rect')._parents
+      .forEach(function (key,i) {
+        if(i <= (interpolation - 1)){
+          d3.select(key).attr('class', 'visFill')
+        }
+      })
+
+
+        // .each(function({}))
+        // .filter(function(d, i) { return i <= (interpolation - 1); })
+        // .attr('class', 'visFill');
 
     module.d3config.mosaicValueText
       .text(interpolation + "%")
