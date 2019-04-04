@@ -113,9 +113,6 @@ SVIFT.vis.mosaic = (function (data, container) {
     var gridSize = module.d3config.rowContainer.node().getBBox().height;
     module.d3config.mosaicValueText
       .attr("y", (gridSize  + (textHeight / 2)));
-
-      console.log(module.d3config.column.selectAll('rect')._parents)
-
   };
 
   module.drawBars = function(t){
